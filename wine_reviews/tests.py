@@ -10,12 +10,9 @@ class WineApiTestCase(APITestCase):
     client = APIClient()
 
     def setUp(self):
-        with open('wine_reviews/fixtures/wines.json') as json_file:
+        with open('wine_reviews/test_files/test_wines.json') as json_file:
             wines = json.load(json_file)
-        wines_object = []
-        for wine in wines[:10]:
-            fields = wine.pop('fields')
-            wines_object.append(Wine(**fields))
+        wines_object = [Wine(**wine) for wine in wines]
         Wine.objects.bulk_create(wines_object)
 
     def test_get_all(self):
