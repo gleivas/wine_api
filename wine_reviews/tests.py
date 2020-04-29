@@ -10,7 +10,7 @@ class WineApiTestCase(APITestCase):
     client = APIClient()
 
     def setUp(self):
-        with open('wine_info/fixtures/wines.json') as json_file:
+        with open('wine_reviews/fixtures/wines.json') as json_file:
             wines = json.load(json_file)
         wines_object = []
         for wine in wines[:10]:
